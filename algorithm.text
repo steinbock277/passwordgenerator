@@ -1,0 +1,81 @@
+# Create a random password generator.
+# The password has to have a length of at least 8 characters, at least 1 digit and 1 special char (_ or -)
+#I will do no validation, since it will be a like push button, which generates random passwords with given conditions.
+
+# Determine character sets
+
+INITIALIZE    lowercase = [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z];
+INITIALIZE    uppercase = [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z];
+INITIALIZE        digit = [0,1,2,3,4,5,6,7,8,9];
+INITIALIZE  specialChar = [-,_]
+INITIALIZE      special = [£,$,&,(,),*,+,[,],@,#,^,-,_,!,?];
+
+INITIALIZE charSetNumber = 4;
+
+# Determine password length
+
+INITIALIZE passLength = 10;
+
+INITIALIZE password = "";
+
+#Password has to have at least 1 digit
+
+        #Choose randomly a character using length of the set
+        index = round(abs(rand()*(length(digit)-1)));
+
+        #add it to the password variable
+        password=+ digit(index+1);
+
+#Password has to have at least 1 special character
+
+        #Choose randomly a character using length of the set
+        index = round(abs(rand()*(length(specialChar)-1)));
+
+        #add it to the password variable
+        password=+ specialChar(index+1);
+  
+
+# Specify a FOR loop to randomly select characters as determined password length from 4 character sets
+
+FOR loop start from 1, ends at (passLength-2)
+    
+    #Determine randomly character set
+    
+    selectCharSet = round(abs(rand()*(charSetNumber-1)));
+    
+    #Determine cases
+    case 0
+
+        #Choose randomly a character using length of the set
+        index = round(abs(rand()*(length(lowercase)-1)));
+
+        #add it to the password variable
+        password=+ lowercase(index+1);
+
+    case 1
+
+        #Choose randomly a character using length of the set
+        index = round(abs(rand()*(length(uppercase)-1)));
+
+        #add it to the password variable
+        password=+ uppercase(index+1);
+
+    case 2
+
+        #Choose randomly a character using length of the set
+        index = round(abs(rand()*(length(number)-1)));
+
+        #add it to the password variable
+        password=+ number(index+1);
+
+    case 3
+
+        #Choose randomly a character using length of the set
+        index = round(abs(rand()*(length(special)-1)));
+
+        #add it to the password variable
+        password=+ special(index+1);
+    end
+end
+
+PRINT "Your password is ${password}"
